@@ -40,7 +40,6 @@ class CardServiceImpl(
     @Transactional
     override fun updateCard(cardId: Long, request: UpdateCardRequest): CardResponse {
         val card = cardRepository.findByIdOrNull(cardId) ?: throw EntityNotFoundException("UpdateCard with ID $cardId not found")
-        return card.toResponse()
 
         val (title, name, content) = request
         card.title = title
