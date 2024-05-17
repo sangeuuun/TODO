@@ -7,5 +7,6 @@ data class CardResponse(
     val title: String,
     val content: String,
     val date: LocalDateTime,
-    val name: String
+    val name: String,
+    val status: Boolean
 )

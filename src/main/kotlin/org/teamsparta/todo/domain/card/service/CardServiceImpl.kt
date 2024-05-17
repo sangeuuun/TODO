@@ -49,6 +49,14 @@ class CardServiceImpl(
         return cardRepository.save(card).toResponse()
     }
 
+    override fun updateCardStatus(cardId: Long, status: Boolean): CardResponse {
+        val card = cardRepository.findByIdOrNull(cardId) ?: throw EntityNotFoundException("UpdateCardStatus with ID $cardId not found")
+
+        card.status = status
+
+        return cardRepository.save(card).toResponse()
+    }
+
     @Transactional
     override fun deleteCard(cardId: Long) {
         val card = cardRepository.findByIdOrNull(cardId) ?: throw EntityNotFoundException("DeleteCard with ID $cardId not found")

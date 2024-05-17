@@ -13,5 +13,7 @@ interface CardService {
 
     fun updateCard(cardId: Long, request: UpdateCardRequest): CardResponse
 
+    fun updateCardStatus(cardId: Long, status: Boolean): CardResponse
+
     fun deleteCard(cardId: Long)
 }

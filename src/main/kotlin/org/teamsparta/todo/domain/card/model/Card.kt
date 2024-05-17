@@ -19,6 +19,9 @@ class Card(
     @Column(name = "name", nullable = false)
     var name: String,
 
+    @Column(name = "status", nullable = false)
+    var status: Boolean = false
+
 ) {
 
     @Id
@@ -33,6 +36,7 @@ fun Card.toResponse(): CardResponse {
         title = title,
         content = content,
         date = date,
-        name = name
+        name = name,
+        status = status
     )
 }

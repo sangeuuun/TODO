@@ -45,6 +45,16 @@ class CardController(
             .body(cardService.updateCard(cardId, updateCardRequest))
     }
 
+    @PatchMapping("/{cardId}")
+    fun updateCardStatus(
+        @PathVariable cardId: Long,
+        @RequestParam status: Boolean
+    ): ResponseEntity<CardResponse> {
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(cardService.updateCardStatus(cardId, status))
+    }
+
     @DeleteMapping("/{cardId}")
     fun deleteCard(@PathVariable cardId: Long): ResponseEntity<Unit> {
         return ResponseEntity
