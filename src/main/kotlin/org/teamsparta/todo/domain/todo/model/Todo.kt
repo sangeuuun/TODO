@@ -1,6 +1,8 @@
 package org.teamsparta.todo.domain.todo.model
 
 import jakarta.persistence.*
+import org.teamsparta.todo.domain.comment.model.Comment
+import org.teamsparta.todo.domain.comment.model.toResponse
 import org.teamsparta.todo.domain.todo.dto.TodoResponse
 import java.time.LocalDateTime
 
@@ -21,13 +23,20 @@ class Todo(
     var name: String,
 
     @Column(name = "status", nullable = false)
-    var status: Boolean = false
+    var status: Boolean = false,
+
+    @OneToMany(mappedBy = "todo", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var comments: MutableList<Comment> = mutableListOf()
 
 ) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
+
+    fun addComment(comment: Comment) {
+        this.comments.add(comment)
+    }
 
 }
 
@@ -38,6 +47,7 @@ fun Todo.toResponse(): TodoResponse {
         content = content,
         date = date,
         name = name,
-        status = status
+        status = status,
+        comments = comments.map{it.toResponse()}
     )
 }
