@@ -14,28 +14,28 @@ class TodoController(
 ) {
 
     @GetMapping("/{todoId}")
-    fun getCard(@PathVariable todoId: Long): ResponseEntity<TodoResponse> {
+    fun getTodo(@PathVariable todoId: Long): ResponseEntity<TodoResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(todoService.getTodoById(todoId))
     }
 
     @GetMapping
-    fun getCardList(): ResponseEntity<List<TodoResponse>> {
+    fun getTodoList(): ResponseEntity<List<TodoResponse>> {
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(todoService.getAllTodoList())
     }
 
     @PostMapping
-    fun createCard(@RequestBody createCardRequest: TodoRequest): ResponseEntity<TodoResponse> {
+    fun createTodo(@RequestBody createCardRequest: TodoRequest): ResponseEntity<TodoResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
             .body(todoService.createTodo(createCardRequest))
     }
 
     @PutMapping("/{todoId}")
-    fun updateCard(
+    fun updateTodo(
         @PathVariable todoId: Long,
         @RequestBody updateCardRequest: TodoRequest
     ): ResponseEntity<TodoResponse> {
@@ -45,7 +45,7 @@ class TodoController(
     }
 
     @PatchMapping("/{todoId}")
-    fun updateCardStatus(
+    fun updateTodoStatus(
         @PathVariable todoId: Long,
         @RequestParam status: Boolean
     ): ResponseEntity<TodoResponse> {
@@ -55,7 +55,7 @@ class TodoController(
     }
 
     @DeleteMapping("/{todoId}")
-    fun deleteCard(@PathVariable todoId: Long): ResponseEntity<Unit> {
+    fun deleteTodo(@PathVariable todoId: Long): ResponseEntity<Unit> {
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
             .build()
