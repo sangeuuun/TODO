@@ -1,12 +1,13 @@
-package org.teamsparta.todo.domain.card.model
+package org.teamsparta.todo.domain.todo.model
 
 import jakarta.persistence.*
-import org.teamsparta.todo.domain.card.dto.CardResponse
+import org.teamsparta.todo.domain.todo.dto.TodoResponse
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "card")
-class Card(
+@Table(name = "todo")
+class Todo(
+
     @Column(name = "title", nullable = false)
     var title: String,
 
@@ -30,8 +31,8 @@ class Card(
 
 }
 
-fun Card.toResponse(): CardResponse {
-    return CardResponse(
+fun Todo.toResponse(): TodoResponse {
+    return TodoResponse(
         id = id!!,
         title = title,
         content = content,
