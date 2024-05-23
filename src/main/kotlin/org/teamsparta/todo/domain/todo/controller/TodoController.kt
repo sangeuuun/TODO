@@ -7,55 +7,55 @@ import org.teamsparta.todo.domain.todo.dto.TodoResponse
 import org.teamsparta.todo.domain.todo.dto.TodoRequest
 import org.teamsparta.todo.domain.todo.service.TodoService
 
-@RequestMapping("/cards")
+@RequestMapping("/todos")
 @RestController
 class TodoController(
     private val todoService: TodoService
 ) {
 
-    @GetMapping("/{cardId}")
-    fun getCard(@PathVariable cardId: Long): ResponseEntity<TodoResponse> {
+    @GetMapping("/{todoId}")
+    fun getCard(@PathVariable todoId: Long): ResponseEntity<TodoResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(todoService.getCardById(cardId))
+            .body(todoService.getTodoById(todoId))
     }
 
     @GetMapping
     fun getCardList(): ResponseEntity<List<TodoResponse>> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(todoService.getAllCardList())
+            .body(todoService.getAllTodoList())
     }
 
     @PostMapping
     fun createCard(@RequestBody createCardRequest: TodoRequest): ResponseEntity<TodoResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(todoService.createCard(createCardRequest))
+            .body(todoService.createTodo(createCardRequest))
     }
 
-    @PutMapping("/{cardId}")
+    @PutMapping("/{todoId}")
     fun updateCard(
-        @PathVariable cardId: Long,
+        @PathVariable todoId: Long,
         @RequestBody updateCardRequest: TodoRequest
     ): ResponseEntity<TodoResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(todoService.updateCard(cardId, updateCardRequest))
+            .body(todoService.updateTodo(todoId, updateCardRequest))
     }
 
-    @PatchMapping("/{cardId}")
+    @PatchMapping("/{todoId}")
     fun updateCardStatus(
-        @PathVariable cardId: Long,
+        @PathVariable todoId: Long,
         @RequestParam status: Boolean
     ): ResponseEntity<TodoResponse> {
         return ResponseEntity
             .status(HttpStatus.OK)
-            .body(todoService.updateCardStatus(cardId, status))
+            .body(todoService.updateTodoStatus(todoId, status))
     }
 
-    @DeleteMapping("/{cardId}")
-    fun deleteCard(@PathVariable cardId: Long): ResponseEntity<Unit> {
+    @DeleteMapping("/{todoId}")
+    fun deleteCard(@PathVariable todoId: Long): ResponseEntity<Unit> {
         return ResponseEntity
             .status(HttpStatus.NO_CONTENT)
             .build()
