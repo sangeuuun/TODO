@@ -19,14 +19,15 @@ todo app backend server
 ## API 명세
 | Command | Method | URL | Response |
 | --- | --- | --- | --- |
-| 할일카드 등록	| post	| todo | 201 | 
-| 카드조회	| get	| /todo/{todoId} | 200 | 
+| 할일카드 등록	| post	| todos | 201 | 
+| 카드조회	| get	| /todos/{todoId} | 200 | 
 | 카드 전체 조회	| get	| /todos | 200 | 
-| 카드 수정	| put	| /todo/{todoId} | 200 | 
-| 카드 삭제	| delete	| /todo/{todoId} | 204 | 
-| 댓글 작성	| post	| /todo/{todoid}/comments | 201 | 
-| 댓글 수정	| put	| /todo/{todoid}/comments/{commentid} | 200 | 
-| 댓글 삭제	| delete	| /todo/{todoid}/comments/{commentid} | 204 | 
+| 카드 수정	| put	| /todos/{todoId} | 200 | 
+| 카드 삭제	| delete	| /todos/{todoId} | 204 | 
+| 카드 상태 변경 | patch | /todos/{todoId}?status= | 200 |
+| 댓글 작성	| post	| /todos/{todoid}/comments | 201 | 
+| 댓글 수정	| put	| /todos/{todoid}/comments/{commentid} | 200 | 
+| 댓글 삭제	| delete	| /todos/{todoid}/comments/{commentid} | 204 | 
 
 ## ERD
 
