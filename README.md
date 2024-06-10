@@ -15,6 +15,11 @@ todo app backend server
 - 댓글 작성
 - 댓글 수정
 - 댓글 삭제
+<br>
+
+- 회원가입
+- 로그인
+
 
 ## API 명세
 | Command | Method | URL | Response |
@@ -28,7 +33,9 @@ todo app backend server
 | 댓글 작성	| post	| /todos/{todoid}/comments | 201 | 
 | 댓글 수정	| put	| /todos/{todoid}/comments/{commentid} | 200 | 
 | 댓글 삭제	| delete	| /todos/{todoid}/comments/{commentid} | 204 | 
+| 회원가입	| post	| /signUp | 201 | 
+| 로그인	| post	| /login | 200 | 
 
 ## ERD
 
-<img width="263" alt="스크린샷 2024-05-24 오전 10 12 59" src="https://github.com/sangeuuun/TODO/assets/151465485/81f39134-8a97-47f5-a101-36ae99c7920b">
+<img width="592" alt="스크린샷 2024-06-10 오전 11 36 29" src="https://github.com/sangeuuun/TODO/assets/151465485/55c1536a-4eaf-460d-92c4-ae52bafdffdf">
