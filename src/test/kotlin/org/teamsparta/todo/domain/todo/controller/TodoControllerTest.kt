@@ -1,5 +1,6 @@
 package org.teamsparta.todo.domain.todo.controller
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.extensions.spring.SpringExtension
@@ -26,7 +27,8 @@ import java.time.LocalDateTime
 @ExtendWith(MockKExtension::class)
 class TodoControllerTest @Autowired constructor(
     private val mockMvc: MockMvc,
-    private val jwtTokenPlugin: JwtTokenPlugin
+    private val jwtTokenPlugin: JwtTokenPlugin,
+    private val objectMapper: ObjectMapper,
 ): DescribeSpec({
     extension(SpringExtension)
 
@@ -53,9 +55,9 @@ class TodoControllerTest @Autowired constructor(
 
                 val jwtToken = jwtTokenPlugin.generateAccessToken(
                     user = User(
-                        email = "test@test.com",
-                        password = "testPassword",
-                        nickname = "testNickname"
+                        email = "test1@test.com",
+                        password = "test1Password",
+                        nickname = "test1Nickname"
                     )
                 )
                 val result = mockMvc.perform(
@@ -67,7 +69,7 @@ class TodoControllerTest @Autowired constructor(
 
                 result.response.status shouldBe 200
 
-                val responseDto = jacksonObjectMapper().readValue(
+                val responseDto = objectMapper.readValue(
                     result.response.contentAsString,
                     TodosResponse::class.java
                 )
@@ -76,4 +78,6 @@ class TodoControllerTest @Autowired constructor(
             }
         }
     }
+
+
 })
