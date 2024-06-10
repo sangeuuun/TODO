@@ -2,17 +2,19 @@ package org.teamsparta.todo.domain.todo.service
 
 import org.teamsparta.todo.domain.todo.dto.TodoResponse
 import org.teamsparta.todo.domain.todo.dto.TodoRequest
+import org.teamsparta.todo.domain.todo.dto.TodosResponse
+import org.teamsparta.todo.infra.security.AuthUser
 
 interface TodoService {
-    fun getAllTodoList(): List<TodoResponse>
+    fun getAllTodoList(sort: String?, authorName: String?): List<TodoResponse>
 
-    fun getTodoById(todoId: Long): TodoResponse
+    fun getTodoById(todoId: Long): TodosResponse
 
-    fun createTodo(request: TodoRequest): TodoResponse
+    fun createTodo(authUser: AuthUser, request: TodoRequest): TodoResponse
 
-    fun updateTodo(todoId: Long, request: TodoRequest): TodoResponse
+    fun updateTodo(authUser: AuthUser, todoId: Long, request: TodoRequest): TodosResponse
 
-    fun updateTodoStatus(todoId: Long, status: Boolean): TodoResponse
+    fun updateTodoStatus(authUser: AuthUser, todoId: Long, status: Boolean): TodosResponse
 
-    fun deleteTodo(todoId: Long)
+    fun deleteTodo(authUser: AuthUser, todoId: Long)
 }

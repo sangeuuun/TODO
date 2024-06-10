@@ -1,6 +1,8 @@
 package org.teamsparta.todo.domain.comment.dto
 
+import jakarta.validation.constraints.NotBlank
+
 data class DeleteCommentRequest(
-    val nickname: String,
+    @field:NotBlank
     val password: String
 )

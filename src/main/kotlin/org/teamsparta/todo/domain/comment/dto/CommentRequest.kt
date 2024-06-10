@@ -1,7 +1,11 @@
 package org.teamsparta.todo.domain.comment.dto
 
+import jakarta.validation.constraints.NotBlank
+
 data class CommentRequest(
-    val nickname: String,
+    @field:NotBlank
     val password: String,
+
+    @field:NotBlank
     val content: String
 )

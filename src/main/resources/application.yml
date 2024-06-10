@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: todo
+jpa:
+  properties:
+    hibernate:
+      format_sql: true
+      highlight_sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type.descriptor.sql: trace
+        orm.jdbc.bind: trace

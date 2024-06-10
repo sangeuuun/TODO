@@ -3,6 +3,7 @@ package org.teamsparta.todo.domain.comment.model
 import org.teamsparta.todo.domain.todo.model.Todo
 import jakarta.persistence.*
 import org.teamsparta.todo.domain.comment.dto.CommentResponse
+import org.teamsparta.todo.domain.user.model.User
 
 @Entity
 @Table(name = "comment")
@@ -10,12 +11,14 @@ class Comment (
 
     var content: String,
 
-    val password: String,
+    var password: String,
 
-    val nickname: String,
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    var user: User,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_id")
+    @JoinColumn(name = "todo_id")
     val todo: Todo,
 
     ) {
@@ -23,13 +26,4 @@ class Comment (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 
-}
-
-fun Comment.toResponse(): CommentResponse {
-    return CommentResponse(
-        id = id!!,
-        content = content,
-        nickname = nickname,
-        todoId = todo.id!!
-    )
 }
